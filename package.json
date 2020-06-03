@@ -1,7 +1,7 @@
 {
-  "name": "react-antd-dynamicform",
-  "version": "0.0.6",
-  "description": "Dynamic form decoration component based on antd modification (the project scaffold is modified by ant-design-pro-layout)",
+  "name": "mushinyComponent",
+  "version": "1.0.0",
+  "description": "mushiny components",
   "files": [
     "/lib",
     "/es"
@@ -60,7 +60,8 @@
     "react-dom": "^16.7.0",
     "react-media-hook2": "^1.1.2",
     "react-router-dom": "4.3.1",
-    "warning": "^4.0.3"
+    "warning": "^4.0.3",
+    "form-render": "^0.5.5"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.2.1",
