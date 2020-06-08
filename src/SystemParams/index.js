@@ -10,6 +10,7 @@ import {
   Col,
   Tooltip,
   Icon,
+  Badge,
 } from 'antd';
 import SelectTag from './component/SelectTag';
 import FormButton from './component/FormButton';
@@ -20,6 +21,8 @@ const uiSchema = {};
 const { TabPane } = Tabs;
 
 class SystemParams extends PureComponent {
+  state = { error: {} };
+
   transformSystemJson = (type, json, label) => {
     const {
       readonly,
@@ -263,10 +266,18 @@ class SystemParams extends PureComponent {
   };
 
   renderTabPane = record => {
+    const { error } = this.state;
     return record.map((obj, index) => {
       const { name, content } = obj;
       return (
-        <TabPane tab={name} key={index}>
+        <TabPane
+          key={index}
+          tab={
+            <Badge count={error[index] ? error[index] : 0} dot>
+              {name}
+            </Badge>
+          }
+        >
           <Row className={styles.formItem} gutter={16}>
             <Form>{this.renderGroup(content)}</Form>
           </Row>
@@ -282,12 +293,40 @@ class SystemParams extends PureComponent {
     }
   };
 
+  handleError = errors => {
+    const errorKey = Object.keys(errors);
+    const dir = {};
+    const { systemFormData } = this.props;
+    systemFormData.forEach((record, index) => {
+      const { tabContent } = record;
+      tabContent.forEach(({ group }) => {
+        group.forEach(({ key }) => {
+          dir[key] = index;
+        });
+      });
+    });
+    const result = {};
+    errorKey.forEach(error => {
+      const key = dir[error];
+      if (result[key] == null) {
+        result[key] = 1;
+      } else {
+        result[key] += 1;
+      }
+    });
+    this.setState({
+      error: result,
+    });
+  };
+
   commit = () => {
     const {
       form: { validateFields },
     } = this.props;
     validateFields((error, value) => {
+      this.handleError(error);
       if (error !== null) {
+        console.log(error);
         message.warn('表单未完成, 请检查必填项');
       } else {
         const { submit } = this.props;

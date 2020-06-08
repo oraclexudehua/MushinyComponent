@@ -1,12 +1,12 @@
 {
-  "name": "mushinyComponent",
+  "name": "mushiny-component",
   "version": "1.0.0",
   "description": "mushiny components",
   "files": [
     "/lib",
     "/es"
   ],
-  "git repository":"https://github.com/oraclexudehua/react-antd-dynamicform.git",
+  "git repository":"https://github.com/oraclexudehua/MushinyComponent.git",
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "es/index.esm.js",
