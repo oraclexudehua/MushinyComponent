@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Select, Input, Button, Col } from 'antd';
 import SystemParams from '../../../es/SystemParams/index';
+import SelectApp from '../../../es/SelectApp/index';
 import axios from 'axios';
 
 // const { DynamicFormCol } = DynamicForm;
@@ -29,8 +30,18 @@ export default class BasicLayout extends Component {
   render() {
     return (
       <div>
-        ooo
-        <Card>
+        <SelectApp
+          onChange={value => {
+            console.log(value);
+          }}
+          defaultValue={'MixRobot'}
+          appList={[
+            { key: 'turnover-box', value: 'http://turnover-box-wcs-dev.mushiny.com' },
+            { key: 'latent-lifting', value: 'http://latent-lifting-wcs-dev.mushiny.com' },
+            { key: 'MixRobot', value: 'http://mixrobot-dev.mushiny.com/' },
+          ]}
+        />
+        {/* <Card>
           <SystemParams
             loading={false}
             submit={value => {
@@ -308,7 +319,7 @@ export default class BasicLayout extends Component {
               },
             ]}
           />
-        </Card>
+        </Card> */}
       </div>
     );
   }

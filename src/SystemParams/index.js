@@ -324,7 +324,10 @@ class SystemParams extends PureComponent {
       form: { validateFields },
     } = this.props;
     validateFields((error, value) => {
-      this.handleError(error);
+      if (error) {
+        console.log(error);
+        this.handleError(error);
+      }
       if (error !== null) {
         console.log(error);
         message.warn('表单未完成, 请检查必填项');
