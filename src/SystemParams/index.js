@@ -15,6 +15,7 @@ import {
 import SelectTag from './component/SelectTag';
 import FormButton from './component/FormButton';
 import FormRenderComponent from './component/FormRender';
+import PassWord from './component/PassWord';
 import styles from './SystemParamsManager.less';
 
 const uiSchema = {};
@@ -44,64 +45,67 @@ class SystemParams extends PureComponent {
       formData: {},
     };
     let defaultValue = { 'ui:readonly': false, type: 'string' };
-    if (type == 'string') {
+    if (type === 'string') {
       defaultValue.type = 'string';
-    } else if (type == 'multiple') {
+    } else if (type === 'password') {
+      // defaultValue.type = 'password';
+      defaultValue['ui:widget'] = 'password';
+    } else if (type === 'multiple') {
       defaultValue.type = 'array';
       const enumNames = [];
       const enums = [];
-      arrayItems.map(({ label, value }) => {
-        enumNames.push(label);
+      arrayItems.map(({ label: showLabel, value }) => {
+        enumNames.push(showLabel);
         enums.push(value);
       });
       defaultValue.enum = enums;
       defaultValue.enumNames = enumNames;
       defaultValue['ui:widget'] = 'multiSelect';
-    } else if (type == 'number') {
+    } else if (type === 'number') {
       defaultValue.type = 'number';
-    } else if (type == 'date') {
+    } else if (type === 'date') {
       defaultValue.format = 'date';
-    } else if (type == 'dateTime') {
+    } else if (type === 'dateTime') {
       defaultValue.format = 'dateTime';
-    } else if (type == 'time') {
+    } else if (type === 'time') {
       defaultValue.format = 'time';
-    } else if (type == 'radio') {
+    } else if (type === 'radio') {
       const enumNames = [];
       const enums = [];
-      arrayItems.map(({ label, value }) => {
-        enumNames.push(label);
+      arrayItems.map(({ label: showLabel, value }) => {
+        enumNames.push(showLabel);
         enums.push(value);
       });
       defaultValue.enum = enums;
       defaultValue.enumNames = enumNames;
       defaultValue['ui:widget'] = 'radio';
-    } else if (type == 'checkbox') {
+    } else if (type === 'checkbox') {
       defaultValue.type = 'array';
       const items = {
         type: 'string',
       };
       const enumNames = [];
       const enums = [];
-      arrayItems.map(({ label, value }) => {
-        enumNames.push(label);
+      arrayItems.map(({ label: showLabel, value }) => {
+        enumNames.push(showLabel);
         enums.push(value);
       });
       defaultValue.enum = enums;
       defaultValue.enumNames = enumNames;
       defaultValue.items = items;
-    } else if (type == 'boolean') {
+    } else if (type === 'boolean') {
       defaultValue.type = 'boolean';
       defaultValue['ui:widget'] = 'switch';
-    } else if (type == 'tag') {
+    } else if (type === 'tag') {
       defaultValue.type = 'tag';
       defaultValue['ui:widget'] = 'tag';
       if (arrayItems) {
         defaultValue['ui:options'] = arrayItems;
       }
-    } else if (type == 'button') {
+    } else if (type === 'button') {
       defaultValue['ui:widget'] = 'button';
       defaultValue['ui:options'] = params;
-    } else if (type == 'range') {
+    } else if (type === 'range') {
       defaultValue.type = 'range';
       defaultValue.format = 'date';
     }
@@ -172,7 +176,7 @@ class SystemParams extends PureComponent {
         uiSchema={uiSchema}
         column={1}
         displayType="row"
-        widgets={{ tag: SelectTag, button: FormButton }}
+        widgets={{ tag: SelectTag, button: FormButton, password: PassWord }}
         onValidate={this.setValid}
       />
     );
@@ -181,6 +185,8 @@ class SystemParams extends PureComponent {
   renderGroup = record => {
     const {
       form: { getFieldDecorator },
+      formItemWapper,
+      ColProps,
     } = this.props;
     return record.map(({ group, groupName }) => {
       return (
@@ -221,6 +227,7 @@ class SystemParams extends PureComponent {
                     xxl={{ span: 8 }}
                     sm={{ span: 24 }}
                     xl={{ span: 12 }}
+                    {...ColProps}
                   >
                     <Col span={22}>
                       <Form.Item
@@ -228,6 +235,7 @@ class SystemParams extends PureComponent {
                         labelCol={{ span: 6 }}
                         label={name}
                         key={field}
+                        {...formItemWapper}
                       >
                         {type === 'button' ? (
                           <FormButton value={defaultValue} />

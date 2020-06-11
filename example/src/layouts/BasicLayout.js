@@ -30,23 +30,26 @@ export default class BasicLayout extends Component {
   render() {
     return (
       <div>
-        <SelectApp
+        {/* <SelectApp
           onChange={value => {
             console.log(value);
           }}
+               wrapperCol={{ span: 18 }}
+                        labelCol={{ span: 6 }}
           defaultValue={'MixRobot'}
           appList={[
             { key: 'turnover-box', value: 'http://turnover-box-wcs-dev.mushiny.com' },
             { key: 'latent-lifting', value: 'http://latent-lifting-wcs-dev.mushiny.com' },
             { key: 'MixRobot', value: 'http://mixrobot-dev.mushiny.com/' },
           ]}
-        />
-        {/* <Card>
+        /> */}
+        <Card>
           <SystemParams
             loading={false}
             submit={value => {
               console.log(value);
             }}
+            formItemWapper={{ labelCol: { span: 10 }, wrapperCol: { span: 14 } }}
             systemFormData={[
               {
                 name: '交通管控',
@@ -57,7 +60,7 @@ export default class BasicLayout extends Component {
                       {
                         name: '安全距离(mm)',
                         key: 'secureDistance',
-                        type: 'number',
+                        type: 'password',
                         description: '小于安全距离的车将被严格管控（单位mm）',
                         readonly: false,
                         isRequired: false,
@@ -123,10 +126,7 @@ export default class BasicLayout extends Component {
                         description: '参与超时重算的车状态',
                         readonly: false,
                         isRequired: true,
-                        items: [
-                          { label: '空车', value: '1' },
-                          { label: '重车', value: '2' },
-                        ],
+                        items: [{ label: '空车', value: '1' }, { label: '重车', value: '2' }],
                       },
                     ],
                   },
@@ -170,10 +170,7 @@ export default class BasicLayout extends Component {
                         description: '描述文字',
                         readonly: false,
                         isRequired: true,
-                        items: [
-                          { label: '重车', value: '1' },
-                          { label: '潜伏车', value: '2' },
-                        ],
+                        items: [{ label: '重车', value: '1' }, { label: '潜伏车', value: '2' }],
                       },
                       {
                         name: 'Multiple',
@@ -182,10 +179,7 @@ export default class BasicLayout extends Component {
                         description: '描述文字',
                         readonly: false,
                         isRequired: false,
-                        items: [
-                          { label: '充电', value: '1' },
-                          { label: '空跑', value: '2' },
-                        ],
+                        items: [{ label: '充电', value: '1' }, { label: '空跑', value: '2' }],
                       },
                       {
                         name: 'Boolean',
@@ -200,10 +194,7 @@ export default class BasicLayout extends Component {
                         type: 'tag',
                         readonly: false,
                         isRequired: false,
-                        items: [
-                          { label: '充电', value: '1' },
-                          { label: '空跑', value: '2' },
-                        ],
+                        items: [{ label: '充电', value: '1' }, { label: '空跑', value: '2' }],
                       },
                       {
                         name: 'Button',
@@ -253,10 +244,7 @@ export default class BasicLayout extends Component {
                         type: 'radio',
                         readonly: false,
                         isRequired: false,
-                        items: [
-                          { label: '重车', value: '1' },
-                          { label: '潜伏车', value: '2' },
-                        ],
+                        items: [{ label: '重车', value: '1' }, { label: '潜伏车', value: '2' }],
                       },
                     ],
                   },
@@ -285,6 +273,10 @@ export default class BasicLayout extends Component {
                         readonly: false,
                         isRequired: false,
                         defaultValue: '',
+                        extraInfo:{
+                          addonBefore:'',
+                          addonAfter=".com"
+                        }
                       },
                       {
                         name: '用户名',
@@ -319,7 +311,7 @@ export default class BasicLayout extends Component {
               },
             ]}
           />
-        </Card> */}
+        </Card>
       </div>
     );
   }

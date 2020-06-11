@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import FormRender from 'form-render/lib/antd';
 import SelectTag from './SelectTag';
 import FormButton from './FormButton';
+import PassWord from './PassWord';
+import Input from './Input';
 
 class FormRenderComponent extends Component {
   onChange = value => {
@@ -36,7 +38,12 @@ class FormRenderComponent extends Component {
             defaultValue: value,
             required: false,
           }}
-          widgets={{ tag: SelectTag, button: FormButton }}
+          widgets={{
+            tag: SelectTag,
+            button: FormButton,
+            password: PassWord,
+            input: Input,
+          }}
         />
       </div>
     );
