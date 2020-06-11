@@ -273,10 +273,6 @@ export default class BasicLayout extends Component {
                         readonly: false,
                         isRequired: false,
                         defaultValue: '',
-                        extraInfo:{
-                          addonBefore:'',
-                          addonAfter=".com"
-                        }
                       },
                       {
                         name: '用户名',
