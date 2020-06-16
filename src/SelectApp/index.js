@@ -69,6 +69,7 @@ class Index extends Component {
       },
     };
     const { value } = this.state;
+
     return (
       <div>
         {appList.map(appInfo => {
@@ -82,6 +83,44 @@ class Index extends Component {
           if (icon != null) {
             img = (
               <Image style={{ ...style }} src={require(`./public/${icon}`)} />
+            );
+          }
+          if (name === 'MixRobot') {
+            return (
+              <span key={name} style={{ marginLeft: 20 }}>
+                <Tooltip placement="topLeft" title={name}>
+                  <span
+                    className={styles.selectAppMix}
+                    value="MixRobot"
+                    // padding: 3px;display: inline-block;c: linear-gradient(#4f97dc, #001529);width: 40px;height: 40px;border-radius: 4px;cursor: pointer
+                    style={{
+                      padding: 3,
+                      display: 'inline-block',
+                      background: 'linear-gradient(#4f97dc, #001529)',
+                      width: 40,
+                      height: 40,
+                      borderRadius: 4,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <span
+                      style={{
+                        height: 40,
+                        width: 34,
+                        display: 'table',
+                        color: ' #aed7ff',
+                        fontSize: 30,
+                        fontWeight: 'bold',
+                        margin: 'auto',
+                        textAlign: 'center',
+                        lineHeight: '34px',
+                      }}
+                    >
+                      M
+                    </span>
+                  </span>
+                </Tooltip>
+              </span>
             );
           }
           return (
