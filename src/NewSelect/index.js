@@ -130,6 +130,7 @@ class NewSelect extends Component {
     return (
       <div>
         <Select
+          style={{ width: 200 }}
           {...this.props}
           onChange={changeValue => {
             this.setState(
@@ -145,7 +146,6 @@ class NewSelect extends Component {
             );
           }}
           value={value}
-          style={{ width: 200 }}
           mode="tags"
         ></Select>
 
