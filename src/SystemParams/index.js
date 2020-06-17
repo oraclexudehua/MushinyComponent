@@ -24,11 +24,10 @@ const { TabPane } = Tabs;
 class SystemParams extends PureComponent {
   state = { error: {} };
 
-  transformSystemJson = (type, json, label) => {
+  transformSystemJson = (type, json) => {
     const {
       readonly,
       isRequired,
-      format,
       items: arrayItems,
       extraInfo,
       defaultValue: initialValue,
@@ -148,6 +147,8 @@ class SystemParams extends PureComponent {
                 formatMessage,
                 isRequiredMessage,
                 defaultValue,
+                formItemWapperProps,
+                labelCol,
               } = form;
               return {
                 schema: this.transformSystemJson(type, form, name),
@@ -160,6 +161,8 @@ class SystemParams extends PureComponent {
                 defaultValue,
                 isRequiredMessage,
                 type,
+                formItemWapperProps,
+                labelCol,
               };
             }),
           };
@@ -186,7 +189,7 @@ class SystemParams extends PureComponent {
     const {
       form: { getFieldDecorator },
       formItemWapper,
-      ColProps,
+      colPorps,
     } = this.props;
     return record.map(({ group, groupName }) => {
       return (
@@ -205,6 +208,7 @@ class SystemParams extends PureComponent {
                 name,
                 type,
                 defaultValue,
+                labelCol,
               }) => {
                 const rules = [];
                 if (isRequired) {
@@ -220,6 +224,19 @@ class SystemParams extends PureComponent {
                     message: formatMessage,
                   });
                 }
+                const formItemWapperProps = {};
+                if (labelCol != null && labelCol !== '') {
+                  if (parseInt(labelCol, 10) > 24) {
+                    message.error('labelCol is must <24 &&labCol is  number');
+                  } else {
+                    formItemWapperProps.wrapperCol = {};
+                    formItemWapperProps.labelCol = {};
+                    formItemWapperProps.wrapperCol.span =
+                      24 - parseInt(labelCol, 10);
+                    formItemWapperProps.labelCol.span = parseInt(labelCol, 10);
+                  }
+                }
+                console.log(formItemWapperProps);
                 return (
                   <Col
                     style={{ minHeight: 66 }}
@@ -227,7 +244,7 @@ class SystemParams extends PureComponent {
                     xxl={{ span: 8 }}
                     sm={{ span: 24 }}
                     xl={{ span: 12 }}
-                    {...ColProps}
+                    {...colPorps}
                   >
                     <Col span={22}>
                       <Form.Item
@@ -236,6 +253,7 @@ class SystemParams extends PureComponent {
                         label={name}
                         key={field}
                         {...formItemWapper}
+                        {...formItemWapperProps}
                       >
                         {type === 'button' ? (
                           <FormButton value={defaultValue} />

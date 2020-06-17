@@ -89,36 +89,41 @@ class Index extends Component {
             return (
               <span key={name} style={{ marginLeft: 20 }}>
                 <Tooltip placement="topLeft" title={name}>
-                  <span
-                    className={styles.selectAppMix}
-                    value="MixRobot"
-                    // padding: 3px;display: inline-block;c: linear-gradient(#4f97dc, #001529);width: 40px;height: 40px;border-radius: 4px;cursor: pointer
-                    style={{
-                      padding: 3,
-                      display: 'inline-block',
-                      background: 'linear-gradient(#4f97dc, #001529)',
-                      width: 40,
-                      height: 40,
-                      borderRadius: 4,
-                      cursor: 'pointer',
-                    }}
-                  >
+                  <Badge dot count={value === name ? 1 : 0}>
                     <span
+                      className={styles.selectAppMix}
+                      value="MixRobot"
+                      // padding: 3px;display: inline-block;c: linear-gradient(#4f97dc, #001529);width: 40px;height: 40px;border-radius: 4px;cursor: pointer
                       style={{
+                        padding: 3,
+                        display: 'inline-block',
+                        background: 'linear-gradient(#4f97dc, #001529)',
+                        width: 40,
                         height: 40,
-                        width: 34,
-                        display: 'table',
-                        color: ' #aed7ff',
-                        fontSize: 30,
-                        fontWeight: 'bold',
-                        margin: 'auto',
-                        textAlign: 'center',
-                        lineHeight: '34px',
+                        borderRadius: 4,
+                        cursor: 'pointer',
                       }}
                     >
-                      M
+                      <span
+                        onClick={() => {
+                          this.onChange(name);
+                        }}
+                        style={{
+                          height: 40,
+                          width: 34,
+                          display: 'table',
+                          color: ' #aed7ff',
+                          fontSize: 30,
+                          fontWeight: 'bold',
+                          margin: 'auto',
+                          textAlign: 'center',
+                          lineHeight: '34px',
+                        }}
+                      >
+                        M
+                      </span>
                     </span>
-                  </span>
+                  </Badge>
                 </Tooltip>
               </span>
             );
