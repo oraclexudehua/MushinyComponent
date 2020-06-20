@@ -9,6 +9,7 @@ import axios from 'axios';
 export default class BasicLayout extends Component {
   state = {
     list: [],
+    value: '',
   };
 
   componentDidMount() {
@@ -28,16 +29,18 @@ export default class BasicLayout extends Component {
     });
   };
   render() {
+    const { value } = this.state;
     return (
       <div>
         <SelectApp
           onChange={value => {
             console.log(value);
+            this.setState({ value });
           }}
           wrapperCol={{ span: 18 }}
           labelCol={{ span: 6 }}
           defaultValue={'MixRobot'}
-          value="MixRobot"
+          value={value}
           appList={[
             { key: 'turnover-box', value: 'http://turnover-box-wcs-dev.mushiny.com' },
             { key: 'latent-lifting', value: 'http://latent-lifting-wcs-dev.mushiny.com' },

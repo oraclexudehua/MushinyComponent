@@ -20,16 +20,24 @@ class Index extends Component {
     });
   }
 
-  onChange = value => {
-    this.setState(
-      {
-        value,
-      },
-      () => {
-        const { onChange } = this.props;
-        if (onChange) onChange(value);
-      },
-    );
+  onChange = newValue => {
+    const { value, onChange } = this.props;
+    if (typeof value === 'undefined') {
+      if (this.state.value !== value) {
+        this.setState(
+          {
+            value: newValue,
+          },
+          () => {
+            if (onChange) onChange(newValue);
+          },
+        );
+      }
+    } else if (onChange) {
+      if (value !== newValue) {
+        onChange(newValue);
+      }
+    }
   };
 
   renderAppInfo = appList => {
@@ -78,10 +86,6 @@ class Index extends Component {
         {appList.map(appInfo => {
           const { key: name, value: url } = appInfo;
           const { icon, style, color, className } = dir[name];
-          // const icon = dir[name].icon;
-          // const style = dir[name].style;
-          // const color = dir[name].color;
-          // const className = dir[name].className;
           let img = null;
           if (icon != null) {
             img = (
