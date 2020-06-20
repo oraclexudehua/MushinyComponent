@@ -44,7 +44,7 @@ export default class BasicLayout extends Component {
             { key: 'MixRobot', value: 'http://mixrobot-dev.mushiny.com/' },
           ]}
         />
-        <Card>
+        {/* <Card>
           <SystemParams
             loading={false}
             submit={value => {
@@ -309,7 +309,7 @@ export default class BasicLayout extends Component {
               },
             ]}
           />
-        </Card>
+        </Card> */}
       </div>
     );
   }

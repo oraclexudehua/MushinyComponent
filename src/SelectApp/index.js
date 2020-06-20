@@ -71,6 +71,7 @@ class Index extends Component {
     const { value: stateValue } = this.state;
 
     const { value: propsValue } = this.props;
+
     const value = propsValue || stateValue;
     return (
       <div>
