@@ -68,8 +68,10 @@ class Index extends Component {
         className: 'selectAppMix',
       },
     };
-    const { value } = this.state;
+    const { value: stateValue } = this.state;
 
+    const { value: propsValue } = this.props;
+    const value = propsValue || stateValue;
     return (
       <div>
         {appList.map(appInfo => {

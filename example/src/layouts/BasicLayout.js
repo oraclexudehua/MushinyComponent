@@ -30,19 +30,20 @@ export default class BasicLayout extends Component {
   render() {
     return (
       <div>
-        {/* <SelectApp
+        <SelectApp
           onChange={value => {
             console.log(value);
           }}
-               wrapperCol={{ span: 18 }}
-                        labelCol={{ span: 6 }}
+          wrapperCol={{ span: 18 }}
+          labelCol={{ span: 6 }}
           defaultValue={'MixRobot'}
+          value="MixRobot"
           appList={[
             { key: 'turnover-box', value: 'http://turnover-box-wcs-dev.mushiny.com' },
             { key: 'latent-lifting', value: 'http://latent-lifting-wcs-dev.mushiny.com' },
             { key: 'MixRobot', value: 'http://mixrobot-dev.mushiny.com/' },
           ]}
-        /> */}
+        />
         <Card>
           <SystemParams
             loading={false}
@@ -65,7 +66,7 @@ export default class BasicLayout extends Component {
                         readonly: false,
                         isRequired: false,
                         defaultValue: 8000.0,
-                        labelCol: 90,
+                        labelCol: 12,
                       },
                       {
                         name: '预先锁提前量',
