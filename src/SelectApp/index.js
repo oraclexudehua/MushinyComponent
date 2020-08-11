@@ -64,7 +64,7 @@ class Index extends Component {
         color: 'linear-gradient(rgb(142, 138, 138), rgba(107, 109, 130, 0.79))',
         className: 'selectAppLatent',
       },
-      MixRobot: {
+      mixrobot: {
         icon: 'pick.png',
         style: {
           height: '100%',
